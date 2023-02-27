@@ -11,9 +11,23 @@ function App() {
     randomContacts.push(contactsArray[Math.floor(Math.random() * (contactsArray.length -5))])
     setContacts(randomContacts)
   }
+
+  const handleNameSort = () => {
+    const sortByName = [...contacts].sort((a,b) => a.name.localeCompare(b.name));
+    setContacts(sortByName)
+    //localeCompare() compares two strings in the current locale and returns a value indicating whether the first string comes before, after, or is the same as the second string in sort order.
+  }
+
+  const handlePopularitySort = () => {
+    const sortByPopularity = [...contacts].sort((a,b) => b.popularity - a.popularity);
+    setContacts(sortByPopularity)
+  }
   
   return (
     <div className="App">
+      <button onClick={handleRandomContact}>Add Contact</button>
+      <button onClick={handleNameSort}>Sort by Name</button>
+      <button onClick={handlePopularitySort}>Sort by Popularity</button>
       <h1>IronContacts</h1>
       <table>
         <tr>
@@ -23,7 +37,7 @@ function App() {
           <th>Won an Oscar</th>
           <th>Won an Emmy</th>
         </tr>
-          {contacts.map((elem, i) => 
+          {contacts.map((elem) => 
             <tr key={elem.id}>
               <td><img width='90px' src={elem.pictureUrl} alt="profileImage"/></td>
               <td>{elem.name}</td>
@@ -33,7 +47,7 @@ function App() {
             </tr> 
           )}
       </table>
-      <button onClick={handleRandomContact}>Add Contact</button>
+      
     </div>
   );
 }
