@@ -22,6 +22,15 @@ function App() {
     const sortByPopularity = [...contacts].sort((a,b) => b.popularity - a.popularity);
     setContacts(sortByPopularity)
   }
+
+  const handleContactRemove = (id) => {
+    const deleteContact = [...contacts].filter(elem => elem.id !== id); 
+    //filter() returs a new array with contacts except the one with the specified id
+    //elem.id !== id checks if the id of the current contact in not equal to the contact we want to delete.
+    //if true => the filter includes the contact in the new array
+    //if false => the filter excludes it
+    setContacts(deleteContact)
+  }
   
   return (
     <div className="App">
@@ -36,6 +45,7 @@ function App() {
           <th>Popularity</th>
           <th>Won an Oscar</th>
           <th>Won an Emmy</th>
+          <th>Actions</th>
         </tr>
           {contacts.map((elem) => 
             <tr key={elem.id}>
@@ -44,6 +54,8 @@ function App() {
               <td>{elem.popularity}</td>
               <td>{elem.wonOscar && <span>🏆</span>}</td>
               <td>{elem.wonEmmy && <span>🏆</span>}</td>
+              <td><button onClick={() => handleContactRemove(elem.id)}>Delete</button></td>
+              {/* anonymous arrow function that calls the handleContactRemove() and passes the id of the contact as an argument. */} 
             </tr> 
           )}
       </table>
