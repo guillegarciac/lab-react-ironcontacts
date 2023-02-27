@@ -34,9 +34,9 @@ function App() {
   
   return (
     <div className="App">
-      <button onClick={handleRandomContact}>Add Contact</button>
-      <button onClick={handleNameSort}>Sort by Name</button>
-      <button onClick={handlePopularitySort}>Sort by Popularity</button>
+      <button class="button" onClick={handleRandomContact}>Add Contact</button>
+      <button class="button" onClick={handleNameSort}>Sort by Name</button>
+      <button class="button" onClick={handlePopularitySort}>Sort by Popularity</button>
       <h1>IronContacts</h1>
       <table>
         <tr>
@@ -49,12 +49,12 @@ function App() {
         </tr>
           {contacts.map((elem) => 
             <tr key={elem.id}>
-              <td><img width='90px' src={elem.pictureUrl} alt="profileImage"/></td>
+              <td><img className="pic" src={elem.pictureUrl} alt="profileImage"/></td>
               <td>{elem.name}</td>
               <td>{elem.popularity}</td>
               <td>{elem.wonOscar && <span>🏆</span>}</td>
               <td>{elem.wonEmmy && <span>🏆</span>}</td>
-              <td><button onClick={() => handleContactRemove(elem.id)}>Delete</button></td>
+              <td><button class="delete" onClick={() => handleContactRemove(elem.id)}>Delete</button></td>
               {/* anonymous arrow function that calls the handleContactRemove() and passes the id of the contact as an argument. */} 
             </tr> 
           )}
